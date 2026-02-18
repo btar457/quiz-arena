@@ -1,0 +1,36 @@
+const Colors = {
+  dark: {
+    background: "#0A0E1A",
+    surface: "#111827",
+    surfaceLight: "#1A2035",
+    card: "#151C2E",
+    cardHover: "#1D2642",
+    border: "#1E293B",
+    borderLight: "#2A3654",
+    text: "#F1F5F9",
+    textSecondary: "#94A3B8",
+    textMuted: "#64748B",
+    primary: "#00E5FF",
+    primaryDim: "rgba(0, 229, 255, 0.15)",
+    accent: "#7C3AED",
+    accentDim: "rgba(124, 58, 237, 0.15)",
+    gold: "#FFD700",
+    goldDim: "rgba(255, 215, 0, 0.15)",
+    success: "#10B981",
+    error: "#EF4444",
+    warning: "#F59E0B",
+    tint: "#00E5FF",
+    tabIconDefault: "#64748B",
+    tabIconSelected: "#00E5FF",
+  },
+  ranks: {
+    beginner: "#94A3B8",
+    intermediate: "#38BDF8",
+    smart: "#10B981",
+    expert: "#A855F7",
+    genius: "#F59E0B",
+    mastermind: "#FFD700",
+  },
+};
+
+export default Colors;
