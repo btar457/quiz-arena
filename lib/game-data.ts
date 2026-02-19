@@ -107,20 +107,14 @@ export interface MatchResult {
 export const DEFAULT_PROFILE: PlayerProfile = {
   id: "player_1",
   name: "لاعب",
-  xp: 450,
-  coins: 500,
-  wins: 12,
-  losses: 5,
-  gamesPlayed: 17,
-  streak: 3,
-  lifelines: { fifty_fifty: 2, time_freeze: 1, shield: 1 },
-  recentMatches: [
-    { id: "m1", date: "2026-02-18", position: 1, score: 2450, totalPlayers: 10, xpGained: 45, coinsGained: 100 },
-    { id: "m2", date: "2026-02-17", position: 3, score: 1980, totalPlayers: 10, xpGained: 25, coinsGained: 50 },
-    { id: "m3", date: "2026-02-17", position: 2, score: 2100, totalPlayers: 10, xpGained: 35, coinsGained: 75 },
-    { id: "m4", date: "2026-02-16", position: 5, score: 1500, totalPlayers: 10, xpGained: 15, coinsGained: 30 },
-    { id: "m5", date: "2026-02-16", position: 1, score: 2600, totalPlayers: 10, xpGained: 50, coinsGained: 120 },
-  ],
+  xp: 0,
+  coins: 0,
+  wins: 0,
+  losses: 0,
+  gamesPlayed: 0,
+  streak: 0,
+  lifelines: { fifty_fifty: 0, time_freeze: 0, shield: 0 },
+  recentMatches: [],
 };
 
 export const BOT_NAMES = [
