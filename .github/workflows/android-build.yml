@@ -28,18 +28,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Expo CLI
-        run: npm install -g expo-cli @expo/cli
-
       - name: Prebuild Android
-        env:
-          EXPO_PUBLIC_DOMAIN: quiz-arena-master.replit.app
         run: npx expo prebuild --platform android --clean
 
       - name: Build APK
         working-directory: android
-        env:
-          EXPO_PUBLIC_DOMAIN: quiz-arena-master.replit.app
         run: ./gradlew assembleRelease
 
       - name: Upload APK
