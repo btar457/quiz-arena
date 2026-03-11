@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android AAB
 
 on:
   push:
@@ -36,15 +36,15 @@ jobs:
           EXPO_PUBLIC_DOMAIN: quiz-arena-master.replit.app
         run: npx expo prebuild --platform android --clean
 
-      - name: Build APK
+      - name: Build AAB
         working-directory: android
         env:
           EXPO_PUBLIC_DOMAIN: quiz-arena-master.replit.app
-        run: ./gradlew assembleRelease
+        run: ./gradlew bundleRelease
 
-      - name: Upload APK
+      - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: quiz-arena-apk
-          path: android/app/build/outputs/apk/release/*.apk
+          name: quiz-arena-aab
+          path: android/app/build/outputs/bundle/release/*.aab
           retention-days: 30
