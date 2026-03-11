@@ -65,8 +65,21 @@ export default function StoreScreen() {
       Alert.alert("عملات غير كافية", `تحتاج ${lifeline.price} عملة لشراء ${lifeline.name}.`);
       return;
     }
-    if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    buyLifeline(lifelineId);
+    Alert.alert(
+      "تأكيد الشراء",
+      `هل تريد شراء ${lifeline.name} مقابل ${lifeline.price} عملة؟`,
+      [
+        { text: "إلغاء", style: "cancel" },
+        {
+          text: "شراء",
+          onPress: () => {
+            if (Platform.OS !== "web") Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            buyLifeline(lifelineId);
+            Alert.alert("تم الشراء", `حصلت على ${lifeline.name}!`);
+          },
+        },
+      ]
+    );
   };
 
   const handleClaimDaily = () => {
