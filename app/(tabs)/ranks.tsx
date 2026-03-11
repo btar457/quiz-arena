@@ -5,19 +5,21 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import Colors from "@/constants/colors";
 import { useGame } from "@/lib/game-context";
-import { RANK_TIERS, getRankFromXP } from "@/lib/game-data";
+import { RANK_TIERS, getRankFromXP, getXPForRankLevel } from "@/lib/game-data";
 
 export default function RanksScreen() {
   const insets = useSafeAreaInsets();
   const { profile } = useGame();
   const currentRank = getRankFromXP(profile.xp);
 
-  let accXP = 0;
+    let accXP = 0;
+  let levelIndex = 0;
   const allRanks: { tier: string; level: number; label: string; color: string; icon: string; minXP: number; maxXP: number; isCurrent: boolean; isUnlocked: boolean }[] = [];
   for (const t of RANK_TIERS) {
     for (let lvl = 1; lvl <= t.levels; lvl++) {
+      const xpNeeded = getXPForRankLevel(levelIndex);
       const min = accXP;
-      const max = accXP + 200;
+      const max = accXP + xpNeeded;
       const label = t.tier === "mastermind" ? "نابغة" : `${t.label} ${lvl}`;
       allRanks.push({
         tier: t.tier,
@@ -30,10 +32,11 @@ export default function RanksScreen() {
         isCurrent: currentRank.label === label,
         isUnlocked: profile.xp >= min,
       });
-      accXP += 200;
+      accXP += xpNeeded;
+      levelIndex++;
     }
   }
-
+  
   return (
     <View style={[styles.container, { paddingTop: Platform.OS === "web" ? 67 : insets.top }]}>
       <ScrollView
