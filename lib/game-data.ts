@@ -23,13 +23,18 @@ export const RANK_TIERS: { tier: RankTier; label: string; color: string; icon: s
   { tier: "mastermind", label: "نابغة", color: "#FFD700", icon: "trophy-outline", levels: 1 },
 ];
 
+export function getXPForRankLevel(levelIndex: number): number {
+  return 200 + levelIndex * 50;
+}
+
 export function getRankFromXP(xp: number): RankInfo {
-  const xpPerLevel = 200;
   let accXP = 0;
+  let levelIndex = 0;
   for (const t of RANK_TIERS) {
     for (let lvl = 1; lvl <= t.levels; lvl++) {
+      const xpNeeded = getXPForRankLevel(levelIndex);
       const min = accXP;
-      const max = accXP + xpPerLevel;
+      const max = accXP + xpNeeded;
       if (xp < max || (t.tier === "mastermind" && lvl === t.levels)) {
         return {
           tier: t.tier,
@@ -41,10 +46,11 @@ export function getRankFromXP(xp: number): RankInfo {
           icon: t.icon,
         };
       }
-      accXP += xpPerLevel;
+      accXP += xpNeeded;
+      levelIndex++;
     }
   }
-  return { tier: "mastermind", level: 1, label: "نابغة", color: "#FFD700", minXP: accXP, maxXP: accXP + 1000, icon: "trophy-outline" };
+  return { tier: "mastermind", level: 1, label: "نابغة", color: "#FFD700", minXP: accXP, maxXP: accXP + 2000, icon: "trophy-outline" };
 }
 
 export interface Lifeline {
